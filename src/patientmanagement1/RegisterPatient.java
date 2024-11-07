@@ -32,6 +32,7 @@ public class RegisterPatient extends JFrame {
 	private JTextField txtlname;
 	private ButtonGroup btn = new ButtonGroup();
 	private String txtGender;
+	public static String role;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +40,11 @@ public class RegisterPatient extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterPatient frame = new RegisterPatient();
+					RegisterPatient frame = new RegisterPatient(role);
+					if(role == null || role.isEmpty()) {
+						new login().setVisible(true);
+						return;
+					}
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +56,8 @@ public class RegisterPatient extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterPatient() {
+	public RegisterPatient(String role) {
+		this.role = role;
 		UserInfo userinfo = new UserInfo();
 //		if(userinfo.getUserName()==null || userinfo.getUserName().isEmpty()) {
 //			new login().setVisible(true);
@@ -211,5 +217,9 @@ public class RegisterPatient extends JFrame {
 		});
 		btnNewButton.setBounds(0, 0, 59, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("Logout");
+		btnNewButton_2.setBounds(475, 0, 65, 23);
+		contentPane.add(btnNewButton_2);
 	}
 }

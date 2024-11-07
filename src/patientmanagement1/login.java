@@ -100,8 +100,9 @@ public class login extends JFrame {
 				        info.setUser(user); //Setting username in setters method from userinfo class
 				        //System.out.println(info.getUserName());
 				        connect.con.close();
-				       System.out.println(info.getRole());
-						new Home().setVisible(true); //opening the home page frame
+				     
+				      // home.role = info.getRole();
+						new Home(info.getRole()).setVisible(true); //opening the home page frame
 						login.this.dispose();
 						
 					} else {

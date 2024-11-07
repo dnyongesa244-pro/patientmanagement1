@@ -34,6 +34,7 @@ public class AddUser extends JFrame {
 	private JTextField txtPassword;
 	private ButtonGroup btn = new ButtonGroup();
 	private String gender;
+	public static String userRole;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,11 @@ public class AddUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddUser frame = new AddUser();
+					AddUser frame = new AddUser(userRole);
+					if(userRole == null || userRole.isEmpty()) {
+					     new login().setVisible(true);
+					     return;
+					}
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +59,8 @@ public class AddUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddUser() {
+	public AddUser(String userRole) {
+		this.userRole = userRole;
 		DatabaseConnection connect = new DatabaseConnection();
 		connect.getConnction();
 		FormatDate   myFormatter = new FormatDate();
@@ -189,5 +195,9 @@ public class AddUser extends JFrame {
 		contentPane.add(btnNewButton);
 		btn.add(rdbtnFemale);
 		btn.add(rdbtnMale);
+		
+		JButton btnNewButton_2 = new JButton("Logout");
+		btnNewButton_2.setBounds(495, 0, 65, 23);
+		contentPane.add(btnNewButton_2);
 	}
 }
